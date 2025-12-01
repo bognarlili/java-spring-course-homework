@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px 28px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+        }
+
+        .card h1 {
+            font-size: 1.8rem;
+            margin: 0 0 22px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        input {
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 0.97rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+        }
+
+        input[readonly] {
+            background: #eef0f5;
+            cursor: not-allowed;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: none;
+            background: #1d4ed8;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e40af;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 14px;
+            text-align: center;
+            width: 100%;
+            font-size: 0.95rem;
+            color: #374151;
+        }
+
+        .back-link a {
+            color: #1d4ed8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <section class="card">
+        <h1>Edit Employee</h1>
+
+        <form th:action="@{/employees/edit/{id}(id=${employee.id})}"
+              th:object="${employee}" method="post">
+
+            <div class="form-group">
+                <label>Id:</label>
+                <input type="text" th:field="*{id}" readonly />
+            </div>
+
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" th:field="*{name}" />
+            </div>
+
+            <div class="form-group">
+                <label>Job:</label>
+                <input type="text" th:field="*{job}" />
+            </div>
+
+            <div class="form-group">
+                <label>Salary:</label>
+                <input type="number" th:field="*{salary}" />
+            </div>
+            
+            <div class="form-group">
+                <label>Started working:</label>
+                <input type="datetime-local" th:field="*{startedWorking}" />
+            </div>
+
+            <div class="actions">
+                <button type="submit">Save</button>
+            </div>
+        </form>
+
+        <div class="back-link">
+            <a th:href="@{/employees}">← Back to employee list</a>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
